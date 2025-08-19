@@ -3,7 +3,6 @@ from flask import Flask
 app=Flask(__name__)
 
 @app.route('/') # esto es un decordor de la ruta principal
-
 def home(): # funtion de la ruta principal
     return "hola, mundo"
 
@@ -27,6 +26,15 @@ def edad (edad):
 def suma (num1, num2):
     resultado=num1 + num2
     return 'La suma de {} y {} es: {}'.format( num1, num2, resultado)
+
+@app.route ('/edadvalor/<int:edad>')
+def edadvalor (edad):
+    if edad < 18:
+        return 'Eres menor de edad'
+    elif edad >= 18 and edad < 65:
+        return 'Eres mayor de edad {} años'.format(edad)
+    else: 
+        return 'Eres un adulto mayor {} años'.format(edad) 
 
 
 if __name__ == '__main__':
