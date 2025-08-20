@@ -8,15 +8,30 @@ def inicio():
 
 @app.route('/contacto', methods=['GET', 'POST'])
 def contacto():
+    usuario={ #Diccionaroio para almacenar los datos del formulario
+         'nombre': '',
+         'email': '',
+         'mensaje': ''
+    }
     if request.method == 'POST':
-        nombre = request.form.get('nombre')
-        email = request.form.get('email')
-        mensaje = request.form.get('mensaje')
-        print(request.form)
-        return 'Mensaje enviado'
-    else:
-        return render_template('contactos.html')
+       usuario['nombre'] = request.args.get('nombre')
+       usuario['email'] = request.args.get('email')
+       usuario['mensaje'] = request.args.get('mensaje')
+    return render_template('contacto.html', user=usuario)
 
+
+@app.route('/contactopost', methods=['GET', 'POST'])
+def contactopost():
+    usuario={ #Diccionaroio para almacenar los datos del formulario
+         'nombre': '',
+         'email': '',
+         'mensaje': ''
+    }
+    if request.method == 'POST':
+       usuario['nombre'] = request.form.get('nombre')
+       usuario['email'] = request.form.get('email')
+       usuario['mensaje'] = request.form.get('mensaje')
+    return render_template('contactospost.html', user=usuario)
 
 @app.route('/login')
 def login():
