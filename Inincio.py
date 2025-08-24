@@ -6,18 +6,18 @@ app = Flask(__name__)
 def inicio():
     return render_template('index.html')
 
-@app.route('/contacto', methods=['GET', 'POST'])
+@app.route('/contactos', methods=['GET', 'POST'])
 def contacto():
     usuario={ #Diccionaroio para almacenar los datos del formulario
          'nombre': '',
          'email': '',
          'mensaje': ''
     }
-    if request.method == 'POST':
+    if request.method == 'GET':
        usuario['nombre'] = request.args.get('nombre')
        usuario['email'] = request.args.get('email')
        usuario['mensaje'] = request.args.get('mensaje')
-    return render_template('contacto.html', user=usuario)
+    return render_template('contactos.html', user=usuario)
 
 
 @app.route('/contactopost', methods=['GET', 'POST'])
@@ -28,10 +28,51 @@ def contactopost():
          'mensaje': ''
     }
     if request.method == 'POST':
+       
        usuario['nombre'] = request.form.get('nombre')
        usuario['email'] = request.form.get('email')
        usuario['mensaje'] = request.form.get('mensaje')
     return render_template('contactospost.html', user=usuario)
+
+
+@app.route('/formulario', methods=['GET', 'POST'])
+def formulario():
+    usuario={ #Diccionaroio para almacenar los datos del formulario
+         'numeroc': '',
+         'nombre': '',
+         'apellidos': '',
+         'direccion': '',
+         'mensaje': ''
+    }
+    if request.method == 'GET':
+       usuario['numeroc'] = request.args.get('numeroc')
+       usuario['nombre'] = request.args.get('nombre')
+       usuario['apellidos'] = request.args.get('apellidos')
+       usuario['direccion'] = request.args.get('direccion')
+       usuario['mensaje'] = request.args.get('mensaje')
+    return render_template('formulario.html', user=usuario)
+
+
+@app.route('/formulariopost', methods=['GET', 'POST'])
+def formulariopost():
+    usuario={ #Diccionaroio para almacenar los datos del formulario
+         'numeroc': '',
+         'nombre': '',
+         'apellidos': '',
+         'direccion': '',
+         'mensaje': ''
+    }
+    if request.method == 'POST':
+       usuario['numeroc'] = request.form.get('numeroc')
+       usuario['nombre'] = request.form.get('nombre')
+       usuario['apellidos'] = request.form.get('apellidos')
+       usuario['direccion'] = request.form.get('direccion')
+       usuario['mensaje'] = request.form.get('mensaje')
+    return render_template('formulariopost.html', user=usuario)
+
+
+
+
 
 @app.route('/login')
 def login():
