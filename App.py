@@ -1,10 +1,10 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app=Flask(__name__)
 
-@app.route('/') # esto es un decordor de la ruta principal
-def home(): # funtion de la ruta principal
-    return "hola, mundo"
+@app.route('/')  # Decorador de la ruta principal
+def inicio():
+    return render_template('index.html')
 
 @app.route('/contacto')
 def contacto(): # funtion de la ruta de contactos
